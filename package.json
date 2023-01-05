@@ -20,6 +20,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "prepare": "husky install",
+    "deploy": "gatsby-plugin-s3 deploy",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
@@ -50,6 +51,7 @@
     "gatsby-source-filesystem": "^3.4.0",
     "gatsby-transformer-remark": "^4.1.0",
     "gatsby-transformer-sharp": "^3.4.0",
+    "gatsby-pligin-s3": "^0.3.8",
     "lodash": "^4.17.19",
     "prismjs": "^1.27.0",
     "prop-types": "^15.7.2",
