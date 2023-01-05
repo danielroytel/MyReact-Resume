@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: "danielroytel",
+        bucketName: "danielroytel.com",
         acl: null
       },
     },
