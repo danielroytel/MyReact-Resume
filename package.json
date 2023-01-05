@@ -1,8 +1,8 @@
 {
   "name": "v4",
-  "description": "Personal Website V4",
+  "description": "Personal Website V1",
   "version": "1.0.0",
-  "author": "Brittany Chiang <brittany.chiang@gmail.com>",
+  "author": "Daniel Roytel <danielroytel@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/bchiang7/v4"
@@ -20,8 +20,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "prepare": "husky install",
-    "deploy": "gatsby-plugin-s3 deploy",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "deploy": "gatsby-plugin-s3 deploy"
   },
   "lint-staged": {
     "*.{js,css,json,md}": [
@@ -51,7 +51,6 @@
     "gatsby-source-filesystem": "^3.4.0",
     "gatsby-transformer-remark": "^4.1.0",
     "gatsby-transformer-sharp": "^3.4.0",
-    "gatsby-pligin-s3": "^0.3.8",
     "lodash": "^4.17.19",
     "prismjs": "^1.27.0",
     "prop-types": "^15.7.2",
@@ -60,7 +59,8 @@
     "react-helmet": "^6.1.0",
     "react-transition-group": "^4.3.0",
     "scrollreveal": "^4.0.5",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "gatsby-pligin-s3": "^0.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
