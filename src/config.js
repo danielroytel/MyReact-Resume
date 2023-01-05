@@ -12,13 +12,13 @@ module.exports = {
     },
     //{
     //  name: 'Instagram',
-    //  url: 'https://www.instagram.com/bchiang7',
+    //  url: 'https://www.instagram.com/',
     //},
 
-    {
-      name: 'Codepen',
-      url: 'https://codepen.io/bchiang7',
-    },
+    // {
+      // name: 'Codepen',
+      // url: 'https://codepen.io/',
+    // },
   ],
 
   navLinks: [
