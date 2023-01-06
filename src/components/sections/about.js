@@ -141,11 +141,11 @@ const About = () => {
               Taking this passion for problem solving and building solutions I progressed into Reporting and Data Design.
             </p>
             <p>
-              Today, I've had the opportunities to support, build and enable an AWS Analytics Platform with a focus on scalable compute using EMR
-              As a Senior Data Engineer at <a href="nab.com.au">a Big 4 Bank</a>
+              Today, I've had the opportinitiy to support, build and enable an AWS Analytics Platform with a focus on scalable compute using EMR
+              as a Senior Data Engineer at <a href="nab.com.au">a Big 4 Bank</a>
             </p>
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Here are a few technologies i’ve been working with recently:</p>
           </div>
 
           <ul className="skills-list">
