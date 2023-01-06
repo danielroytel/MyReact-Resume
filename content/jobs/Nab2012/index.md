@@ -5,6 +5,7 @@ company: 'NAB'
 team: 'Various'
 location: 'Melbourne, Australia'
 range: 'May 2012 - August 2014'
+range_abrv: 'May 2012 - Aug 2014'
 url: 'https://www.nab.com.au/'
 ---
 

@@ -24,7 +24,7 @@ const variables = css`
     --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 
 
-    --fz-xxxs: 4px;
+    --fz-xxxs: 8px;
     --fz-xxs: 12px;
     --fz-xs: 13px;
     --fz-sm: 14px;

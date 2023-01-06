@@ -5,6 +5,7 @@ company: 'NAB'
 team: 'Personal Bank Data & Analytics'
 location: 'Melbourne, Australia'
 range: 'November 2021 - Current'
+range_abrv: 'Nov 2021 - Current'
 url: 'https://www.nab.com.au/'
 ---
 

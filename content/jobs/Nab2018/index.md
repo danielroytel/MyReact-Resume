@@ -5,6 +5,7 @@ company: 'NAB'
 team: 'Workforce optimisation & Analytics'
 location: 'Melbourne, Australia'
 range: 'September 2018 - March 2019'
+range_abrv: 'Sep 2018 - Mar 2019'
 url: 'https://www.nab.com.au/'
 ---
 

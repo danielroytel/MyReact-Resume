@@ -5,6 +5,7 @@ company: 'NAB'
 team: 'Direct Consumer Solutions & Retention'
 location: 'Melbourne, Australia'
 range: 'June 2018 - August 2018'
+range_abrv: 'Jun 2018 - Aug 2018'
 url: 'https://www.nab.com.au/'
 ---
 

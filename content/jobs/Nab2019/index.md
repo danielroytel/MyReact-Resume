@@ -5,6 +5,7 @@ company: 'NAB'
 team: 'Enterprise Data Insights | Legacy Transformation'
 location: 'Melbourne, Australia'
 range: 'April 2019 - October 2021'
+range_abrv: 'Apr 2019 - Oct 2021'
 url: 'https://www.nab.com.au/'
 ---
 
