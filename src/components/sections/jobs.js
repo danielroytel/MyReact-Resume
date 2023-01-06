@@ -271,7 +271,8 @@ const Jobs = () => {
                   tabIndex={activeTabId === i ? '0' : '-1'}
                   aria-selected={activeTabId === i ? true : false}
                   aria-controls={`panel-${i}`}>
-                  <span>{company} | {range_abrv}</span>
+                  <span>{range_abrv}</span>
+                  {/* <span>{company} | {range_abrv}</span> */}
                 </StyledTabButton>
               );
             })}
