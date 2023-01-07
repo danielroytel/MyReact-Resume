@@ -136,13 +136,12 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Daniel and I enjoy build scalable cloud & analytics solutions.
-              My interest in Data & Analytics started out in 2014 when I began with building an Workflow Application in Excel VBA.
-              Taking this passion for problem solving and building solutions I progressed into Reporting and Data Design.
+              HHello! My name is Daniel, I enjoy building scalable cloud & analytics solutions. My interest in Data & Analytics started in 2014 when I built a Workflow Application in Excel VBA. 
+              Taking this passion for problem-solving and building solutions I progressed into Reporting and Data Design.
             </p>
             <p>
-              Today, I've had the opportinitiy to support, build and enable an AWS Analytics Platform with a focus on scalable compute using EMR
-              as a Senior Data Engineer at <a href="nab.com.au">a Big 4 Bank</a>
+            Today, I've had the opportunity to support, build and enable an AWS Analytics Platform with a focus on scalable computing using EMR 
+            as a Senior Data Engineer at <a href="nab.com.au">a Big 4 Bank</a>
             </p>
 
             <p>Here are a few technologies i’ve been working with recently:</p>
