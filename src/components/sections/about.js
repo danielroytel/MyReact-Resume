@@ -136,7 +136,7 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              HHello! My name is Daniel, I enjoy building scalable cloud & analytics solutions. My interest in Data & Analytics started in 2014 when I built a Workflow Application in Excel VBA. 
+              Hello! My name is Daniel, I enjoy building scalable cloud & analytics solutions. My interest in Data & Analytics started in 2014 when I built a Workflow Application in Excel VBA. 
               Taking this passion for problem-solving and building solutions I progressed into Reporting and Data Design.
             </p>
             <p>
