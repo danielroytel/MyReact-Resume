@@ -4,6 +4,7 @@ phases:
         commands:
             # - 'sudo yum install npm'
             # - ‘touch .npmignore’
+            - 'sudo apt-get install npm'
             - ‘npm install -g gatsby@3.15.0’
     pre_build:
         commands:
