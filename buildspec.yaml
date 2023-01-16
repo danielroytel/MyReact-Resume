@@ -1,20 +1,20 @@
 version: 0.2
-env:
-  variables:
-    NODE_VERSION: "12"
 phases:
     install:
+        runtime-versions:
+            nodejs: 12
         commands:
-            - nvm install $NODE_VERSION
-            - node -v
-            - npm -v
-            - npm install
+            - 'touch .npmignore'
+            - 'npm install -g gatsby@3.15.0'
+    pre_build:
+        commands:
+            - 'npm install'
     build:
         commands:
-            - npm run build
+            - 'npm run build'
     post_build:
-        commands:
-            - gatsby-plugin-s3 deploy -y
+        commands:       
+            - 'gatsby-plugin-s3 deploy -y'
 artifacts:
     base-directory: public
     files:
