@@ -6,6 +6,7 @@ phases:
         commands:
             - 'touch .npmignore'
             - 'npm install -g gatsby@3.4.1'
+            - 'npm install -g gatsby-plugin-s3'
     pre_build:
         commands:
             - 'npm install'
