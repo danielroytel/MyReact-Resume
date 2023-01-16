@@ -1,12 +1,10 @@
 version: 0.1
 phases:
     install:
+        runtime-versions:
+            - nodejs: 12
         commands:
-            # - 'sudo yum install npm'
-            # - ‘touch .npmignore’
-            - 'sudo apt-get update'
-            - 'sudo apt-get upgrade -y'
-            - 'sudo apt-get install npm'
+            - ‘touch .npmignore’
             - ‘npm install -g gatsby@3.15.0’
     pre_build:
         commands:
