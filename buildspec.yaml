@@ -1,13 +1,17 @@
-version: 0.1
+version: 0.2
+env:
+  variables:
+    NODE_VERSION: "12"
 phases:
     install:
-        runtime-versions:
-            nodejs: 12
         commands:
+            - nvm install $NODE_VERSION
+            - node -v
+            - npm -v
             - npm install
     build:
         commands:
-            - gatsby build
+            - npm run build
     post_build:
         commands:
             - gatsby-plugin-s3 deploy -y
