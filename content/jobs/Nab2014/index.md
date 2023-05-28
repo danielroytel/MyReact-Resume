@@ -1,14 +1,15 @@
 ---
 date: '2014-09-01'
-title: 'Reporting Analyst'
+title: 'Analyst & Reporting Specialist'
 company: 'NAB'
 team: 'Direct Performance Reporting'
 location: 'Melbourne, Australia'
-range: 'September 2014 - May 2018'
-range_abrv: 'Sep 2014 - May 2018'
+range: 'September 2014 - August 2018'
+range_abrv: 'Sep 2014 - Aug 2018'
 url: 'https://www.nab.com.au/'
 ---
 
-- Build & update business and banker level reporting utilising Microsoft SQL and Microsoft Excel.
-- Liaising with internal stakeholders to build and update reports per their requirements to effectively view and manage their performance.
-- Ad-hoc reports and analytics to draw attention to potential process or banker performance issues.
+- Provided data analytics, reporting support, and built/updated reports using Microsoft SQL and Excel to drive process improvements and enhance banker performance.
+- Developed and managed key datasets for analytics purposes and automated complex data processes for improved efficiency.
+- Collaborated with stakeholders to meet reporting requirements and support effective performance management.
+- Conducted ad-hoc analysis to identify process and performance issues.
