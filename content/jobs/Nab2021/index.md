@@ -4,8 +4,8 @@ title: 'Senior Data Engineer'
 company: 'NAB'
 team: 'Personal Bank Data & Analytics'
 location: 'Melbourne, Australia'
-range: 'November 2021 - Current'
-range_abrv: 'Nov 2021 - Current'
+range: 'November 2021 - January 2023'
+range_abrv: 'Nov 2021 - Jan 2023'
 url: 'https://www.nab.com.au/'
 ---
 
