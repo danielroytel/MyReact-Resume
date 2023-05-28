@@ -9,5 +9,7 @@ range_abrv: 'Feb 2023 - Current'
 url: 'https://www.sportsbet.com.au'
 ---
 
-- Develop Spark Pipelines to migrate from Legacy Data Warehouse to ADP (AWS DeltaLake Platform)
-- Build AWS GLUE Jobs to perform microbatch processing from Source Systems
+- Develop and execute Spark pipelines for migration of data to ADP (AWS DeltaLake Platform) from a legacy data warehouse.
+- Build AWS Glue jobs to perform microbatch processing of data from source systems.
+- Design and implement ETL processes using Databricks and AWS services for data transformation.
+- Manage data catalog, ensure data security, and adhere to governance policies using Databricks and AWS Glue.

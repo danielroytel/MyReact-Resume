@@ -45,6 +45,32 @@ const StyledText = styled.div`
       }
     }
   }
+  ul.certs-list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(140px, 200px));
+    grid-gap: 0 10px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    overflow: hidden;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      font-family: var(--font-mono);
+      font-size: var(--fz-xs);
+
+      &:before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--orange);
+        font-size: var(--fz-sm);
+        line-height: 12px;
+      }
+    }
+  }
 `;
 const StyledPic = styled.div`
   position: relative;
@@ -126,7 +152,10 @@ const About = () => {
   }, []);
 
   //const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
-  const skills = ['Spark', 'Jenkins', 'Terraform','Airflow','Redshift', 'EMR', 'Docker'];
+  const skills = ['Spark', 'AWS GLUE', 'Data Bricks','Jenkins', 'Terraform','Airflow', 'EMR', 'Docker'];
+
+  
+  const certs = ['AWS Certified SysOps Administrator - Associate', 'AWS Certified Developer - Associate', 'Databricks Certified Data Engineer Associate','Azure Data Engineer Associate', 'Azure Developer Associate'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -140,8 +169,8 @@ const About = () => {
               Taking this passion for problem-solving and building solutions I progressed into Reporting and Data Design.
             </p>
             <p>
-            Today, I've had the opportunity to support, build and enable an AWS Analytics Platform with a focus on scalable computing using EMR 
-            as a Senior Data Engineer at <a href="nab.com.au">a Big 4 Bank</a>
+            Today, I've had the opportunity to support, build and enable an AWS Analytics Platform with a focus on AWS GLUE & EMR
+            as a Data Engineer at <a href="sportsbet.com.au">Australia's leading book maker</a>
             </p>
 
             <p>Here are a few technologies i’ve been working with recently:</p>

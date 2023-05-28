@@ -65,10 +65,10 @@ const Hero = () => {
   const four = (
     <>
       <p>
-        I’m a Data engineering professional specializing in building and administering big data platforms. Currently, I’m focused on supporting scalable analytics platforms
+        I’m a Data engineering professional specializing in building and administering big data platforms. Currently, I’m focused on supporting a DeltaLake migration
         at{' '}
-        <a href="https://nab.com.au/" target="_blank" rel="noreferrer">
-          National Australia Bank
+        <a href="https://sportsbet.com.au/" target="_blank" rel="noreferrer">
+          Sportsbet
         </a>
         .
       </p>
