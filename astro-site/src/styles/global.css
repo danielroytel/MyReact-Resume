@@ -171,6 +171,7 @@ main {
 
 main.fillHeight {
   padding: 0 150px;
+  counter-reset: section;
 }
 @media (max-width: 1080px) {
   main.fillHeight {
@@ -235,7 +236,6 @@ h6 {
   width: 100%;
   font-size: clamp(26px, 5vw, var(--fz-heading));
   white-space: nowrap;
-  counter-reset: section;
 }
 
 .numbered-heading::before {

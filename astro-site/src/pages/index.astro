@@ -1,17 +1,19 @@
 ---
 import BaseLayout from '@components/layout/BaseLayout.astro';
 import Hero from '@components/sections/Hero.astro';
+import About from '@components/sections/About.astro';
 import Jobs from '@components/sections/Jobs.astro';
 import Contact from '@components/sections/Contact.astro';
-// About, Featured, Projects sections exist but are intentionally NOT
-// imported here — matches the commented-out state of the original home page.
+// Featured and Projects section components exist in src/components/sections/
+// but are intentionally NOT imported here — matches the commented-out state
+// of the original home page.
 ---
 
 <BaseLayout isHome>
   <main class="fillHeight">
     <Hero />
+    <About />
     <Jobs />
-    {/* <About /> */}
     {/* <Featured /> */}
     {/* <Projects /> */}
     <Contact />
