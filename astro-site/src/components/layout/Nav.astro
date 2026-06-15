@@ -2,12 +2,6 @@
 import { navLinks } from '@config';
 import Logo from '@components/icons/Logo.astro';
 import MobileMenu from '@components/islands/MobileMenu.astro';
-
-interface Props {
-  isHome?: boolean;
-}
-
-const { isHome = false } = Astro.props;
 ---
 
 <header class="nav-header" data-scroll-direction="up" data-scrolled-to-top="true">
@@ -21,7 +15,7 @@ const { isHome = false } = Astro.props;
     <div class="nav-links">
       <ol>
         {
-          navLinks.map(({ url, name }, i) => (
+          navLinks.map(({ url, name }) => (
             <li>
               <a href={url}>{name}</a>
             </li>

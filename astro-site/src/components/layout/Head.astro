@@ -50,8 +50,19 @@ const GA_ID = 'G-XXXXXXXXXX'; // TODO: replace with real GA4 measurement ID
 {
   import.meta.env.PROD && GA_ID !== 'G-XXXXXXXXXX' && (
     <>
-      <script is:raw async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-      <script is:raw set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`} />
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+      />
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+      </script>
     </>
   )
 }

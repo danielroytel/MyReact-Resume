@@ -1,10 +1,10 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 // Allow empty strings (common in existing markdown) to be treated as
 // "no value" for URL fields.
 const optionalUrl = z
-  .string()
   .url()
   .optional()
   .or(z.literal(''))
@@ -20,7 +20,7 @@ const jobs = defineCollection({
     location: z.string().optional(),
     range: z.string(),
     range_abrv: z.string(),
-    url: z.string().url(),
+    url: z.url(),
   }),
 });
 
