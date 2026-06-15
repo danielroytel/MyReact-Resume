@@ -1,6 +1,6 @@
 ---
-// Preserved for parity with the original site. NOT imported into index.astro
-// (matching the commented-out state of the original home page).
+// About section — facts cross-checked against DanielRoytel_Resume.pdf
+// (career start date, current stack, certifications).
 ---
 
 <section id="about" class="about" data-sr>
@@ -8,26 +8,39 @@
   <div class="inner">
     <div class="text">
       <p>
-        Hello! My name is Daniel, I enjoy building scalable cloud &amp; analytics solutions. My
-        interest in Data &amp; Analytics started in 2014 when I built a Workflow Application in
-        Excel VBA. Taking this passion for problem-solving and building solutions I progressed
-        into Reporting and Data Design.
+        Hello! My name is Daniel. I&rsquo;m a Data Engineer with over 10 years across banking and
+        wagering. I started at <a href="https://www.nab.com.au" target="_blank" rel="noreferrer">NAB</a>
+        in 2012 working in customer service and internet-banking support, then moved into reporting
+        and analytics in 2014 — building SQL and Excel reporting for banker performance. From there
+        I moved into data design and then data engineering on the Personal Bank Data &amp; Analytics
+        platform.
       </p>
       <p>
-        Today, I&rsquo;ve had the opportunity to support, build and enable an AWS Analytics Platform
-        with a focus on AWS GLUE &amp; EMR as a Data Engineer at
-        <a href="https://sportsbet.com.au">Australia&rsquo;s leading book maker</a>.
+        Today, I&rsquo;m a Data Engineer on the Data Platforms team at
+        <a href="https://www.sportsbet.com.au" target="_blank" rel="noreferrer">Sportsbet</a>, where
+        I build and operate the AWS Deltalake Platform (ADP) — Spark pipelines for billion-record
+        migrations, event-driven Kafka ingestion, and the CloudFormation and GitHub Actions
+        tooling that keeps it shipping.
       </p>
-      <p>Here are a few technologies i&rsquo;ve been working with recently:</p>
+      <p>Here are a few technologies I&rsquo;ve been working with recently:</p>
       <ul class="skills-list">
-        <li>Spark</li>
-        <li>AWS GLUE</li>
-        <li>Data Bricks</li>
-        <li>Jenkins</li>
+        <li>Python / PySpark</li>
+        <li>SQL</li>
+        <li>Apache Spark</li>
+        <li>Databricks</li>
+        <li>AWS Glue</li>
+        <li>Apache Kafka</li>
+        <li>Apache Airflow</li>
         <li>Terraform</li>
-        <li>Airflow</li>
-        <li>EMR</li>
         <li>Docker</li>
+        <li>GitHub Actions</li>
+      </ul>
+      <p>A few certifications along the way:</p>
+      <ul class="certs-list">
+        <li>AWS Certified Developer &ndash; Associate</li>
+        <li>Databricks Certified Data Engineer Associate</li>
+        <li>Azure Data Engineer Associate</li>
+        <li>Azure Developer Associate</li>
       </ul>
     </div>
     <div class="pic">
@@ -49,23 +62,31 @@
     .about .inner { display: block; }
   }
 
-  .skills-list {
+  .skills-list,
+  .certs-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 200px));
     grid-gap: 0 10px;
     padding: 0;
     margin: 20px 0 0;
     overflow: hidden;
     list-style: none;
-  }
-  .skills-list li {
-    position: relative;
-    margin-bottom: 10px;
-    padding-left: 20px;
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
   }
-  .skills-list li::before {
+  .skills-list {
+    grid-template-columns: repeat(2, minmax(140px, 200px));
+  }
+  .certs-list {
+    grid-template-columns: 1fr;
+  }
+  .skills-list li,
+  .certs-list li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+  }
+  .skills-list li::before,
+  .certs-list li::before {
     content: '▹';
     position: absolute;
     left: 0;
