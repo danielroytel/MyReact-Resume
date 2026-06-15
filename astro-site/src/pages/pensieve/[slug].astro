@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '@layouts/PostLayout.astro';
+
+// Slug in frontmatter may include or omit leading slash and /pensieve/ prefix
+// (e.g. "/pensieve/clickable-cards" or "clickable-cards"). Normalize and
+// match against the URL param.
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts
+    .filter(p => !p.data.draft)
+    .map(post => {
+      const raw = post.data.slug;
+      const normalized = raw
+        .replace(/^\/pensieve\//, '')
+        .replace(/^\//, '')
+        .replace(/\/$/, '');
+      return {
+        params: { slug: normalized },
+        props: { post },
+      };
+    });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<PostLayout title={post.data.title} date={post.data.date} tags={post.data.tags}>
+  <Content />
+</PostLayout>

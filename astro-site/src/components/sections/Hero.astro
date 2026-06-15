@@ -1,0 +1,109 @@
+---
+// Hero section. Markup is static; the intro fade-up animation is pure CSS
+// driven by a class added on load. No React.
+---
+
+<section class="hero" data-hero>
+  <h1>Hi, my name is</h1>
+  <h2 class="big-heading">Daniel Roytel.</h2>
+  <h3 class="big-heading">I build big data platforms.</h3>
+  <p>
+    I&rsquo;m a Data engineering professional specializing in building and administering big data
+    platforms. Currently, I&rsquo;m focused on supporting a DeltaLake migration at{' '}
+    <a href="https://sportsbet.com.au/" target="_blank" rel="noreferrer">Sportsbet</a>.
+  </p>
+</section>
+
+<script>
+  // Trigger the fade-up animation once on load. Respects reduced motion
+  // via the CSS media query in the <style> block below.
+  const hero = document.querySelector('[data-hero]');
+  if (hero) {
+    window.setTimeout(() => hero.classList.add('is-mounted'), 1000);
+  }
+</script>
+
+<style>
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0;
+  }
+  @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
+    .hero {
+      height: auto;
+      padding-top: var(--nav-height);
+    }
+  }
+
+  .hero h1 {
+    margin: 0 0 30px 4px;
+    color: var(--orange);
+    font-family: var(--font-mono);
+    font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 300ms var(--easing),
+      transform 300ms var(--easing);
+  }
+  @media (max-width: 480px) {
+    .hero h1 { margin: 0 0 20px 2px; }
+  }
+
+  .hero h2,
+  .hero h3,
+  .hero p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 300ms var(--easing),
+      transform 300ms var(--easing);
+  }
+
+  .hero h3 {
+    margin-top: 5px;
+    color: var(--slate);
+    line-height: 0.9;
+  }
+
+  .hero p {
+    margin: 20px 0 0;
+    max-width: 540px;
+  }
+
+  .hero.is-mounted h1 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0ms;
+  }
+  .hero.is-mounted h2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 100ms;
+  }
+  .hero.is-mounted h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 200ms;
+  }
+  .hero.is-mounted p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 300ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero h2, .hero h3, .hero p {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

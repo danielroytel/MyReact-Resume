@@ -1,0 +1,168 @@
+---
+// Astro wrapper: fetch jobs collection, render each markdown body to HTML
+// at build time using `marked`, then hand off to the React island for
+// interactive tab switching + keyboard navigation.
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+import JobsTabsTSX from './JobsTabs.tsx';
+
+const jobs = await getCollection('jobs');
+const sorted = jobs.toSorted((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const rendered = sorted.map(entry => ({
+  html: marked.parse(entry.body ?? '', { async: false }) as string,
+  frontmatter: {
+    title: entry.data.title,
+    company: entry.data.company,
+    team: entry.data.team,
+    location: entry.data.location,
+    range: entry.data.range,
+    range_abrv: entry.data.range_abrv,
+    url: entry.data.url,
+  },
+}));
+---
+
+<JobsTabsTSX client:visible jobs={rendered} />
+
+<style is:global>
+  .jobs-inner {
+    display: flex;
+  }
+  @media (max-width: 600px) {
+    .jobs-inner { display: block; }
+  }
+  @media (min-width: 700px) {
+    .jobs-inner { min-height: 340px; }
+  }
+
+  .tab-list {
+    position: relative;
+    z-index: 3;
+    width: max-content;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 600px) {
+    .tab-list {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      width: calc(100% + 100px);
+      padding-left: 50px;
+      margin-left: -50px;
+      margin-bottom: 30px;
+    }
+  }
+  @media (max-width: 480px) {
+    .tab-list {
+      width: calc(100% + 50px);
+      padding-left: 25px;
+      margin-left: -25px;
+    }
+  }
+
+  .tab-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--tab-height);
+    padding: 0 20px 2px;
+    border-left: 2px solid var(--lightest-navy);
+    background-color: transparent;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .tab-button.is-active { color: var(--orange); }
+  .tab-button:hover,
+  .tab-button:focus { background-color: var(--light-navy); }
+  @media (max-width: 768px) {
+    .tab-button {
+      min-width: 180px;
+      padding: 0 15px 2px;
+      white-space: normal;
+    }
+  }
+  @media (max-width: 600px) {
+    .tab-button {
+      justify-content: center;
+      align-items: center;
+      min-width: 180px;
+      padding: 0 15px;
+      border-left: 0;
+      border-bottom: 2px solid var(--lightest-navy);
+      text-align: center;
+      white-space: normal;
+    }
+  }
+
+  .tab-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 2px;
+    height: var(--tab-height);
+    border-radius: var(--border-radius);
+    background: var(--orange);
+    transition: transform 0.25s var(--easing);
+    transition-delay: 0.1s;
+  }
+
+  .tab-panels {
+    position: relative;
+    width: 100%;
+    margin-left: 20px;
+  }
+  @media (max-width: 600px) {
+    .tab-panels {
+      min-width: 180px;
+      margin-left: 0;
+    }
+  }
+
+  .tab-panel {
+    width: 100%;
+    height: auto;
+    padding: 10px 5px;
+  }
+  .tab-panel ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: var(--fz-lg);
+  }
+  .tab-panel ul li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+  }
+  .tab-panel ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+  }
+  .tab-panel h3 {
+    margin-bottom: 2px;
+    font-size: var(--fz-xxl);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .tab-panel h3 .company { color: var(--orange); }
+  .tab-panel .range,
+  .tab-panel .team {
+    margin-bottom: 25px;
+    color: var(--light-slate);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+  }
+</style>

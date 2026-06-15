@@ -1,0 +1,40 @@
+---
+import { email } from '@config';
+---
+
+<section id="contact" class="contact" data-sr>
+  <h2 class="numbered-heading overline">What&rsquo;s Next?</h2>
+  <h2 class="title">Get In Touch</h2>
+  <p>
+    Although I&rsquo;m not actively seeking new opportunities, my inbox is always open. Whether you
+    have a question or want to say hi, I&rsquo;ll try my best to get back to you!
+  </p>
+  <a class="button-big email-link" href={`mailto:${email}`}>Say Hello</a>
+</section>
+
+<style>
+  .contact {
+    max-width: 600px;
+    margin: 0 auto 100px;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .contact { margin: 0 auto 50px; }
+  }
+  .contact .overline {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--orange);
+    font-family: var(--font-mono);
+    font-size: var(--fz-md);
+    font-weight: 400;
+  }
+  .contact .overline::before { bottom: 0; font-size: var(--fz-sm); }
+  .contact .overline::after { display: none; }
+  .contact .title {
+    font-size: clamp(40px, 5vw, 60px);
+  }
+  .contact .email-link {
+    margin-top: 50px;
+  }
+</style>

@@ -1,0 +1,32 @@
+/* Astro/Shiki code block styling. Shiki inlines token colors, so we only
+   need to style the container and a few structural elements. */
+
+astro-code,
+pre.astro-code {
+  background-color: #112340 !important;
+  color: #a2aabc;
+  border-radius: var(--border-radius);
+  margin: 2em 0;
+  padding: 1.25em;
+  overflow: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fz-md);
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: var(--lightest-navy);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  border-radius: var(--border-radius);
+  padding: 0.2em 0.4em;
+}
+
+pre.astro-code code {
+  background-color: transparent;
+  font-size: var(--fz-sm);
+  padding: 0;
+}

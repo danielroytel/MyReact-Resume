@@ -1,0 +1,78 @@
+---
+import '@styles/global.css';
+import Head from './Head.astro';
+import Nav from './Nav.astro';
+import Social from './Social.astro';
+import Email from './Email.astro';
+import Footer from './Footer.astro';
+import Loader from './Loader.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  isHome?: boolean;
+  location?: { pathname: string };
+}
+
+const { title, description, image, isHome = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} image={image} />
+  </head>
+  <body class={isHome ? 'is-home' : ''}>
+    <a class="skip-to-content button" href="#content">Skip to Content</a>
+
+    {isHome && <Loader />}
+
+    <div id="root">
+      <Nav isHome={isHome} />
+      <Social isHome={isHome} />
+      <Email isHome={isHome} />
+
+      <div id="content">
+        <slot />
+        <Footer />
+      </div>
+    </div>
+
+    <script>
+      // Initialize scroll-reveal on any [data-sr] elements. Respects
+      // prefers-reduced-motion (skips entirely).
+      const motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+      if (motionOK) {
+        import('scrollreveal').then(({ default: ScrollReveal }) => {
+          const sr = ScrollReveal();
+          sr.reveal('[data-sr]', {
+            origin: 'bottom',
+            distance: '20px',
+            duration: 500,
+            easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+            viewFactor: 0.25,
+          });
+          sr.reveal('[data-sr][data-sr-delay]', {
+            beforeReveal: (el: HTMLElement) => {
+              const delay = Number(el.getAttribute('data-sr-delay') || '0');
+              el.style.transitionDelay = `${delay}ms`;
+            },
+          });
+        });
+      }
+
+      // Anchor-link smooth scroll with focus management (was in layout.js useEffect)
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        window.setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView();
+            (el as HTMLElement).focus?.();
+          }
+        }, 0);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@components/layout/BaseLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import Jobs from '@components/sections/Jobs.astro';
+import Contact from '@components/sections/Contact.astro';
+// About, Featured, Projects sections exist but are intentionally NOT
+// imported here — matches the commented-out state of the original home page.
+---
+
+<BaseLayout isHome>
+  <main class="fillHeight">
+    <Hero />
+    <Jobs />
+    {/* <About /> */}
+    {/* <Featured /> */}
+    {/* <Projects /> */}
+    <Contact />
+  </main>
+</BaseLayout>

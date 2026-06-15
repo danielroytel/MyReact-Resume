@@ -1,0 +1,194 @@
+---
+// Astro wrapper that hands config + resume URL into the React island.
+import MobileMenuTSX from './MobileMenu.tsx';
+import { navLinks } from '@config';
+---
+
+<MobileMenuTSX client:load navLinks={[...navLinks]} resumeHref="/DanielRoytel_Resume.pdf" />
+
+<style is:global>
+  .menu-root {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .menu-root {
+      display: block;
+    }
+  }
+
+  .hamburger-button {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .hamburger-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      margin-right: -15px;
+      padding: 15px;
+      border: 0;
+      background-color: transparent;
+      color: inherit;
+      text-transform: none;
+      transition-timing-function: linear;
+      transition-duration: 0.15s;
+      transition-property: opacity, filter;
+      cursor: pointer;
+    }
+  }
+
+  .ham-box {
+    display: inline-block;
+    position: relative;
+    width: var(--hamburger-width);
+    height: 24px;
+  }
+
+  .ham-box-inner {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: var(--hamburger-width);
+    height: 2px;
+    border-radius: var(--border-radius);
+    background-color: var(--orange);
+    transition-duration: 0.22s;
+    transition-property: transform;
+  }
+
+  .hamburger-button.is-open .ham-box-inner {
+    transition-delay: 0.12s;
+    transform: rotate(225deg);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .hamburger-button:not(.is-open) .ham-box-inner {
+    transition-delay: 0s;
+    transform: rotate(0deg);
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  .ham-box-inner::before,
+  .ham-box-inner::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: auto;
+    right: 0;
+    width: var(--hamburger-width);
+    height: 2px;
+    border-radius: 4px;
+    background-color: var(--orange);
+    transition-timing-function: ease;
+    transition-duration: 0.15s;
+    transition-property: transform;
+  }
+  .hamburger-button:not(.is-open) .ham-box-inner::before {
+    width: 120%;
+    top: -10px;
+    opacity: 1;
+    transition: var(--ham-before);
+  }
+  .hamburger-button.is-open .ham-box-inner::before {
+    width: 100%;
+    top: 0;
+    opacity: 0;
+    transition: var(--ham-before-active);
+  }
+  .hamburger-button:not(.is-open) .ham-box-inner::after {
+    width: 80%;
+    bottom: -10px;
+    transform: rotate(0);
+    transition: var(--ham-after);
+  }
+  .hamburger-button.is-open .ham-box-inner::after {
+    width: 100%;
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: var(--ham-after-active);
+  }
+
+  .sidebar {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      padding: 50px 10px;
+      width: min(75vw, 400px);
+      height: 100vh;
+      outline: 0;
+      background-color: var(--light-navy);
+      box-shadow: -10px 0px 30px -15px var(--navy-shadow);
+      z-index: 9;
+      transform: translateX(100vw);
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    .sidebar.is-open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+  }
+
+  .sidebar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    color: var(--lightest-slate);
+    font-family: var(--font-mono);
+    text-align: center;
+  }
+  .sidebar-nav ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+  }
+  .sidebar-nav li {
+    position: relative;
+    margin: 0 auto 20px;
+    counter-increment: item 1;
+    font-size: clamp(var(--fz-sm), 4vw, var(--fz-lg));
+  }
+  @media (max-width: 600px) {
+    .sidebar-nav li {
+      margin: 0 auto 10px;
+    }
+  }
+  .sidebar-nav li::before {
+    content: '0' counter(item) '.';
+    display: block;
+    margin-bottom: 5px;
+    color: var(--orange);
+    font-size: var(--fz-sm);
+  }
+  .sidebar-nav li a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding: 3px 20px 20px;
+    transition: var(--transition);
+  }
+  .sidebar-nav li a:hover,
+  .sidebar-nav li a:focus {
+    color: var(--orange);
+    outline: 0;
+  }
+  .sidebar-nav .resume-link {
+    padding: 18px 50px;
+    margin: 10% auto 0;
+    width: max-content;
+    display: inline-block;
+  }
+</style>

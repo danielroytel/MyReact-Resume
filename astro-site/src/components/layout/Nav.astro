@@ -1,0 +1,181 @@
+---
+import { navLinks } from '@config';
+import Logo from '@components/icons/Logo.astro';
+import MobileMenu from '@components/islands/MobileMenu.astro';
+
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
+---
+
+<header class="nav-header" data-scroll-direction="up" data-scrolled-to-top="true">
+  <nav class="nav-inner">
+    <div class="logo" tabindex="-1">
+      <a href="/" aria-label="home">
+        <Logo />
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <ol>
+        {
+          navLinks.map(({ url, name }, i) => (
+            <li>
+              <a href={url}>{name}</a>
+            </li>
+          ))
+        }
+      </ol>
+      <div>
+        <a class="button-small resume-button" href="/DanielRoytel_Resume.pdf" target="_blank" rel="noopener noreferrer">
+          Resume
+        </a>
+      </div>
+    </div>
+
+    <MobileMenu />
+  </nav>
+</header>
+
+<script>
+  // Nav scroll-hide behavior. Plain DOM — no framework needed.
+  const header = document.querySelector('.nav-header');
+  if (header) {
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+      ? false
+      : true;
+    if (motionOK) {
+      let lastY = window.pageYOffset;
+      let ticking = false;
+      const update = () => {
+        const y = window.pageYOffset;
+        const atTop = y < 50;
+        const goingDown = y > lastY;
+        header.setAttribute('data-scrolled-to-top', atTop ? 'true' : 'false');
+        header.setAttribute('data-scroll-direction', goingDown ? 'down' : 'up');
+        lastY = y > 0 ? y : 0;
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      });
+    }
+  }
+</script>
+
+<style>
+  .nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    padding: 0 50px;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: rgba(10, 25, 47, 0.85);
+    filter: none !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 1080px) {
+    .nav-header { padding: 0 40px; }
+  }
+  @media (max-width: 768px) {
+    .nav-header { padding: 0 25px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-header[data-scroll-direction='up'][data-scrolled-to-top='false'] {
+      height: var(--nav-scroll-height);
+      transform: translateY(0);
+      background-color: rgba(10, 25, 47, 0.85);
+      box-shadow: 0 10px 30px -10px var(--navy-shadow);
+    }
+    .nav-header[data-scroll-direction='down'][data-scrolled-to-top='false'] {
+      height: var(--nav-scroll-height);
+      transform: translateY(calc(var(--nav-scroll-height) * -1));
+      box-shadow: 0 10px 30px -10px var(--navy-shadow);
+    }
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    color: var(--lightest-slate);
+    font-family: var(--font-mono);
+    counter-reset: item 0;
+    z-index: 12;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo a {
+    color: var(--orange);
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+  }
+  .logo a:hover svg,
+  .logo a:focus svg {
+    fill: var(--orange-tint);
+  }
+  .logo svg {
+    fill: none;
+    transition: var(--transition);
+    user-select: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  .nav-links ol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .nav-links li {
+    margin: 0 5px;
+    position: relative;
+    counter-increment: item 1;
+    font-size: var(--fz-xs);
+  }
+  .nav-links li a {
+    padding: 10px;
+  }
+  .nav-links li a::before {
+    content: '0' counter(item) '.';
+    margin-right: 5px;
+    color: var(--orange);
+    font-size: var(--fz-xxs);
+    text-align: right;
+  }
+
+  .resume-button {
+    margin-left: 15px;
+    font-size: var(--fz-xs);
+  }
+</style>

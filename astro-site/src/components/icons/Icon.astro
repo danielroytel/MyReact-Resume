@@ -1,0 +1,20 @@
+---
+// Generic icon picker — used by archive.astro where icon name comes from
+// frontmatter (External, GitHub, AppStore, PlayStore).
+import AppStore from './AppStore.astro';
+import External from './External.astro';
+import GitHub from './GitHub.astro';
+import PlayStore from './PlayStore.astro';
+
+interface Props {
+  name: 'AppStore' | 'External' | 'GitHub' | 'PlayStore';
+}
+
+const { name } = Astro.props;
+---
+
+{name === 'AppStore' && <AppStore />}
+{name === 'External' && <External />}
+{name === 'GitHub' && <GitHub />}
+{name === 'PlayStore' && <PlayStore />}
+{name !== 'AppStore' && name !== 'External' && name !== 'GitHub' && name !== 'PlayStore' && <External />}

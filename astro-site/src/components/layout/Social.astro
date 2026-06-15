@@ -1,0 +1,90 @@
+---
+import { socialMedia } from '@config';
+import LinkedIn from '@components/icons/Linkedin.astro';
+import GitHub from '@components/icons/GitHub.astro';
+import Instagram from '@components/icons/Instagram.astro';
+import Codepen from '@components/icons/Codepen.astro';
+import Twitter from '@components/icons/Twitter.astro';
+
+const iconMap: Record<string, any> = {
+  Linkedin: LinkedIn,
+  GitHub,
+  Instagram,
+  Codepen,
+  Twitter,
+};
+
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
+---
+
+<div class={`side side-right${isHome ? ' is-home' : ''}`}>
+  <ul class="social-list">
+    {
+      socialMedia.map(({ url, name }) => {
+        const IconCmp = iconMap[name];
+        return (
+          <li>
+            <a href={url} aria-label={name} target="_blank" rel="noreferrer">
+              {IconCmp && <IconCmp />}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
+
+<style>
+  .side {
+    width: 40px;
+    position: fixed;
+    bottom: 0;
+    color: var(--light-slate);
+    z-index: 10;
+  }
+  .side-right {
+    right: 40px;
+  }
+  @media (max-width: 1080px) {
+    .side-right { right: 20px; }
+  }
+  @media (max-width: 768px) {
+    .side { display: none; }
+  }
+
+  .social-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .social-list::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 0 auto;
+    background-color: var(--light-slate);
+  }
+  .social-list li:last-of-type {
+    margin-bottom: 20px;
+  }
+  .social-list a {
+    padding: 10px;
+    display: inline-flex;
+  }
+  .social-list a:hover,
+  .social-list a:focus {
+    transform: translateY(-3px);
+  }
+  .social-list svg {
+    width: 20px;
+    height: 20px;
+  }
+</style>

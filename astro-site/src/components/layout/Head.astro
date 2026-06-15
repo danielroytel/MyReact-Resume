@@ -1,0 +1,57 @@
+---
+// Head metadata + analytics. GA4 ID is a placeholder — replace G-XXXXXXXXXX
+// with a real GA4 measurement ID before deploy. Universal Analytics
+// (UA-253312998-1) was shut down by Google in July 2023 and is intentionally
+// not carried forward.
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const defaultTitle = 'Daniel Roytel';
+const defaultDescription =
+  'Daniel Roytel is a Data Engineering Professional who specializes in building Big Data Solutions';
+const siteUrl = 'https://danielroytel.com';
+const defaultImage = '/og.png';
+
+const { title, description, image } = Astro.props;
+
+const seoTitle = title ?? defaultTitle;
+const seoDescription = description ?? defaultDescription;
+const seoImage = `${siteUrl}${image ?? defaultImage}`;
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
+const GA_ID = 'G-XXXXXXXXXX'; // TODO: replace with real GA4 measurement ID
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{seoTitle}</title>
+<meta name="description" content={seoDescription} />
+<meta name="image" content={seoImage} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={seoImage} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="google-site-verification" content="DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk" />
+
+<ClientRouter />
+
+{
+  import.meta.env.PROD && GA_ID !== 'G-XXXXXXXXXX' && (
+    <>
+      <script is:raw async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+      <script is:raw set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`} />
+    </>
+  )
+}

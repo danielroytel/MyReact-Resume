@@ -1,0 +1,90 @@
+---
+// Page loader shown only on home. Pure CSS + small inline script — no React,
+// no animejs. The hexagon outline is "drawn" via stroke-dashoffset, then the
+// whole overlay fades out.
+import LoaderIcon from '@components/icons/Loader.astro';
+---
+
+<div class="loader" id="loader">
+  <div class="logo-wrapper">
+    <LoaderIcon />
+  </div>
+</div>
+
+<script>
+  // Respect prefers-reduced-motion: skip the loader entirely
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loader = document.getElementById('loader');
+  if (loader) {
+    if (reduce) {
+      loader.remove();
+    } else {
+      document.body.classList.add('hidden');
+      window.setTimeout(() => {
+        loader.classList.add('done');
+        document.body.classList.remove('hidden');
+        window.setTimeout(() => loader.remove(), 300);
+      }, 2400);
+    }
+  }
+</script>
+
+<style>
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-navy);
+    z-index: 99;
+    transition: opacity 0.3s var(--easing);
+  }
+  .loader.done {
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .logo-wrapper {
+    width: max-content;
+    max-width: 100px;
+    transition: var(--transition);
+    opacity: 1;
+  }
+  .logo-wrapper svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    fill: none;
+    user-select: none;
+  }
+
+  /* Hexagon draw animation */
+  .logo-wrapper svg path[stroke='currentColor'] {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: draw 1.5s var(--easing) 0.3s forwards;
+  }
+  /* Inner letter fade */
+  .logo-wrapper svg #B {
+    opacity: 0;
+    animation: fade-in 0.7s var(--easing) 1.6s forwards;
+  }
+  /* Whole logo scale + fade */
+  .logo-wrapper {
+    animation: logo-out 0.3s var(--easing) 2.1s forwards;
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+  @keyframes logo-out {
+    to { opacity: 0; transform: scale(0.1); }
+  }
+</style>

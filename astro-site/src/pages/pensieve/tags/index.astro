@@ -1,0 +1,54 @@
+---
+import BaseLayout from '@components/layout/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { kebabCase } from '@utils';
+
+const posts = (await getCollection('posts')).filter(p => !p.data.draft);
+
+const tagCount = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagCount.set(tag, (tagCount.get(tag) ?? 0) + 1);
+  }
+}
+
+const tags = [...tagCount.entries()].toSorted((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Tags - Pensieve">
+  <main>
+    <header data-sr>
+      <h1 class="big-heading">Tags</h1>
+      <p class="subtitle">All tags</p>
+    </header>
+
+    <ul class="tags-list">
+      {
+        tags.map(([tag, count]) => (
+          <li>
+            <a href={`/pensieve/tags/${kebabCase(tag)}/`} class="inline-link">
+              #{tag} <span class="count">({count})</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .tags-list {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-family: var(--font-mono);
+    font-size: var(--fz-md);
+  }
+  .tags-list .count {
+    color: var(--slate);
+    font-size: var(--fz-xs);
+  }
+</style>

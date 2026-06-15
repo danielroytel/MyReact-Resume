@@ -1,0 +1,88 @@
+---
+import { socialMedia } from '@config';
+import LinkedIn from '@components/icons/Linkedin.astro';
+import GitHub from '@components/icons/GitHub.astro';
+
+const iconMap: Record<string, any> = {
+  Linkedin: LinkedIn,
+  GitHub,
+};
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="social-links">
+    <ul>
+      {
+        socialMedia.map(({ name, url }) => {
+          const IconCmp = iconMap[name];
+          return (
+            <li>
+              <a href={url} aria-label={name}>
+                {IconCmp && <IconCmp />}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+
+  <div class="credit">
+    <a href="https://github.com/danielroytel">
+      <div>Designed &amp; Built by Daniel Roytel</div>
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    min-height: 70px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .social-links {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .social-links {
+      display: block;
+      width: 100%;
+      max-width: 270px;
+      margin: 0 auto 10px;
+      color: var(--light-slate);
+    }
+  }
+  .social-links ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .social-links a {
+    padding: 10px;
+  }
+  .social-links svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .credit {
+    color: var(--light-slate);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxxs);
+    line-height: 1;
+  }
+  .credit a {
+    padding: 10px;
+  }
+</style>

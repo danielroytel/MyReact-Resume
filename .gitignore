@@ -5,3 +5,7 @@ public/
 yarn.lock
 yarn-error.log
 .cache/*
+
+# Astro build output
+astro-site/dist/
+astro-site/.astro/
