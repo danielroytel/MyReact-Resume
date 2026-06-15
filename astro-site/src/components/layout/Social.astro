@@ -83,8 +83,9 @@ const { isHome = false } = Astro.props;
   .social-list a:focus {
     transform: translateY(-3px);
   }
-  .social-list svg {
+  .social-list :global(svg) {
     width: 20px;
     height: 20px;
+    display: block;
   }
 </style>

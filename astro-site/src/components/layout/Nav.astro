@@ -131,11 +131,11 @@ const { isHome = false } = Astro.props;
     height: 42px;
     display: inline-flex;
   }
-  .logo a:hover svg,
-  .logo a:focus svg {
+  .logo a:hover :global(svg),
+  .logo a:focus :global(svg) {
     fill: var(--orange-tint);
   }
-  .logo svg {
+  .logo :global(svg) {
     fill: none;
     transition: var(--transition);
     user-select: none;

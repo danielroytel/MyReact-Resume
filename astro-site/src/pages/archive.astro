@@ -122,10 +122,11 @@ const projects = (await getCollection('projects')).toSorted(
     }
   }
 
-  td svg,
-  th svg {
+  td :global(svg),
+  th :global(svg) {
     width: 20px;
     height: 20px;
+    display: block;
   }
 
   tr { cursor: default; }
