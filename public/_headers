@@ -1,10 +1,24 @@
-# Cloudflare Pages cache-control rules.
-# Astro outputs content-hashed filenames under /_astro/* — safe to cache
-# aggressively. Everything else (HTML, fonts, images, PDF, sitemap) gets
-# a short cache so updates land within 5 minutes.
+# Cloudflare Pages headers — cache-control + security.
+#
+# Cache rules: Astro outputs content-hashed filenames under /_astro/*,
+# safe to cache aggressively. Everything else (HTML, fonts, images, PDF,
+# sitemap) gets a short cache so updates land within 5 minutes.
+#
+# Security headers: lock down the site to HTTPS, prevent clickjacking /
+# MIME sniffing / referrer leakage, and restrict what the page can load
+# via CSP. CSP allows self-hosted assets + inline scripts/styles (Astro
+# emits inline scripts for hydration + the loader/nav/scrollreveal init)
+# + the Cloudflare Web Analytics beacon (auto-injected by Pages) + a
+# future GA4 endpoint (placeholder, so the rule is ready when GA_ID is).
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*
   Cache-Control: public, max-age=300
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'
