@@ -3,17 +3,21 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { fileURLToPath } from 'node:url';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://danielroytel.com',
   output: 'static',
   integrations: [react(), sitemap()],
+
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
       wrap: true,
     },
   },
+
   vite: {
     resolve: {
       alias: {
@@ -28,4 +32,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare(),
 });

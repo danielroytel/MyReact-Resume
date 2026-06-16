@@ -16,3 +16,10 @@ npm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
