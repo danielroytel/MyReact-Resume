@@ -1,11 +1,18 @@
+# build output
+dist/
+.astro/
 
-*.DS_Store
+# dependencies
 node_modules/
-/public/
+
+# logs / caches
+*.DS_Store
+.cache/*
 yarn.lock
 yarn-error.log
-.cache/*
+npm-debug.log*
 
-# Astro build output
-astro-site/dist/
-astro-site/.astro/
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/

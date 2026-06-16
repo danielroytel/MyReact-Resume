@@ -11,7 +11,7 @@ const optionalUrl = z
   .transform(v => (v === '' ? undefined : v));
 
 const jobs = defineCollection({
-  loader: glob({ base: '../content/jobs', pattern: '**/index.md' }),
+  loader: glob({ base: './content/jobs', pattern: '**/index.md' }),
   schema: z.object({
     date: z.coerce.date(),
     title: z.string(),
@@ -25,7 +25,7 @@ const jobs = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ base: '../content/projects', pattern: '**/*.md' }),
+  loader: glob({ base: './content/projects', pattern: '**/*.md' }),
   schema: z.object({
     date: z.coerce.date(),
     title: z.string(),
@@ -41,7 +41,7 @@ const projects = defineCollection({
 });
 
 const posts = defineCollection({
-  loader: glob({ base: '../content/posts', pattern: '**/index.md' }),
+  loader: glob({ base: './content/posts', pattern: '**/index.md' }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -53,7 +53,7 @@ const posts = defineCollection({
 });
 
 const featured = defineCollection({
-  loader: glob({ base: '../content/featured', pattern: '**/index.md' }),
+  loader: glob({ base: './content/featured', pattern: '**/index.md' }),
   schema: z.object({
     date: z.coerce.date(),
     title: z.string(),

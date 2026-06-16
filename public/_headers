@@ -1,0 +1,10 @@
+# Cloudflare Pages cache-control rules.
+# Astro outputs content-hashed filenames under /_astro/* — safe to cache
+# aggressively. Everything else (HTML, fonts, images, PDF, sitemap) gets
+# a short cache so updates land within 5 minutes.
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  Cache-Control: public, max-age=300
