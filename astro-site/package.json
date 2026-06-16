@@ -5,6 +5,9 @@
   "author": "Daniel Roytel <danielroytel@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

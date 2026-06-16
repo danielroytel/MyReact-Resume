@@ -1,7 +1,9 @@
 # AWS CodeBuild spec — builds the Astro site and deploys to S3.
 #
 # Required CodeBuild environment:
-#   - Managed runtime: nodejs:20
+#   - Managed runtime: nodejs:22 (Astro 6 requires Node >=22.12.0;
+#     CodeBuild's nodejs:20 image tops out at 20.20.0 and Astro
+#     refuses to start under it)
 #   - Service role with s3:PutObject / s3:DeleteObject / s3:ListBucket
 #     on arn:aws:s3:::danielroytel.com/*
 #   - (Optional) CLOUDFRONT_DISTRIBUTION_ID env var if a CloudFront
@@ -14,9 +16,10 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: '20'
+      nodejs: '22'
     commands:
       - cd astro-site
+      - node --version
       - npm ci --no-audit --no-fund
   build:
     commands:
